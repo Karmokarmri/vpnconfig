@@ -1,0 +1,11 @@
+{
+  "version": "1",
+  "token": "xK9mP2qR8vL5nJ3wY7tA1cF6hD4eB0sU",
+  "servers": [
+    {
+      "config": "[Interface]\nPrivateKey = PLACEHOLDER_REPLACE_AFTER_SERVER\nAddress = 10.0.0.2/32\nDNS = 1.1.1.1\n\n[Peer]\nPublicKey = PLACEHOLDER_REPLACE_AFTER_SERVER\nPresharedKey = PLACEHOLDER_REPLACE_AFTER_SERVER\nAllowedIPs = 0.0.0.0/0\nEndpoint = 1.2.3.4:51820\nPersistentKeepalive = 25",
+      "priority": 1,
+      "country": "EU"
+    }
+  ]
+}
