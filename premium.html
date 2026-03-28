@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShieldVPN Premium</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #07071A;
+      --card:      #0F0F2A;
+      --card2:     #13133A;
+      --border:    rgba(255,255,255,0.07);
+      --blue:      #4A80F0;
+      --purple:    #7C3AED;
+      --gold:      #FFB800;
+      --gold2:     #FF6B00;
+      --text:      #FFFFFF;
+      --muted:     #6B7280;
+      --green:     #22C55E;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(7,7,26,0.95);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 0 16px rgba(74,128,240,0.4);
+    }
+
+    .nav-logo-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .nav-badge {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #000;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 64px 24px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(74,128,240,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,184,0,0.1);
+      border: 1px solid rgba(255,184,0,0.25);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff 40%, rgba(255,255,255,0.6));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .main { grid-template-columns: 1fr; }
+      .checkout-col { order: -1; }
+    }
+
+    /* ── FEATURES ── */
+    .features-col h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 10px;
+      transition: border-color 0.2s;
+    }
+
+    .feature-item:hover {
+      border-color: rgba(74,128,240,0.3);
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(74,128,240,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .feature-text h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .feature-text p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* comparison table */
+    .compare {
+      margin-top: 28px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .compare-header {
+      display: grid;
+      grid-template-columns: 1fr 80px 80px;
+      padding: 12px 16px;
+      background: var(--card2);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 1fr 80px 80px;
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      align-items: center;
+    }
+
+    .compare-row .label { color: var(--text); }
+    .compare-row .free  { color: var(--muted); text-align: center; }
+    .compare-row .premium { color: var(--green); text-align: center; font-weight: 600; }
+
+    /* ── CHECKOUT CARD ── */
+    .checkout-col {
+      position: sticky;
+      top: 80px;
+    }
+
+    .checkout-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+    }
+
+    .checkout-card h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    /* plan toggle */
+    .plan-toggle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .plan-btn {
+      padding: 14px 10px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .plan-btn.active {
+      border-color: var(--gold);
+      background: rgba(255,184,0,0.06);
+    }
+
+    .plan-btn .plan-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      display: block;
+    }
+
+    .plan-btn .plan-price {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+      display: block;
+      margin: 4px 0;
+    }
+
+    .plan-btn .plan-period {
+      font-size: 11px;
+      color: var(--muted);
+      display: block;
+    }
+
+    .plan-btn .save-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--green);
+      color: #000;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+
+    /* email field */
+    .field-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .field-input {
+      width: 100%;
+      background: #07071A;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 16px;
+      color: var(--text);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 16px;
+    }
+
+    .field-input:focus {
+      border-color: var(--blue);
+    }
+
+    .field-input::placeholder { color: #374151; }
+
+    /* pay button */
+    .pay-btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #000;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(255,184,0,0.3);
+      margin-top: 4px;
+    }
+
+    .pay-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+    .pay-btn:active { transform: translateY(0); }
+    .pay-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* trust badges */
+    .trust {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* already paid */
+    .already-paid {
+      text-align: center;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .already-paid p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .already-paid input {
+      width: 100%;
+      background: #07071A;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 14px;
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+      margin-bottom: 8px;
+    }
+
+    .already-paid input:focus { border-color: var(--blue); }
+    .already-paid input::placeholder { color: #374151; }
+
+    .verify-btn {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid var(--blue);
+      border-radius: 10px;
+      background: rgba(74,128,240,0.08);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .verify-btn:hover { background: rgba(74,128,240,0.15); }
+
+    /* error / success */
+    .msg {
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      margin-bottom: 14px;
+      display: none;
+    }
+
+    .msg.error {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.25);
+      color: #F87171;
+    }
+
+    .msg.success {
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.25);
+      color: var(--green);
+    }
+
+    /* spinner */
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(0,0,0,0.3);
+      border-top-color: #000;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* success page */
+    .success-page {
+      display: none;
+      text-align: center;
+      padding: 60px 24px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .success-icon {
+      width: 80px; height: 80px;
+      border-radius: 24px;
+      background: rgba(34,197,94,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin: 0 auto 24px;
+    }
+
+    .success-page h2 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .success-page p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 14px 32px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">🛡️</div>
+    <span class="nav-logo-text">ShieldVPN</span>
+  </a>
+  <div class="nav-badge">⭐ Premium</div>
+</nav>
+
+<!-- SUCCESS PAGE -->
+<div class="success-page" id="successPage">
+  <div class="success-icon">✅</div>
+  <h2>You're Premium!</h2>
+  <p>Your account has been upgraded successfully.</p>
+  <p>Open ShieldVPN app and tap <strong>"I already paid"</strong> to activate your premium features.</p>
+  <br>
+  <div style="background:rgba(255,184,0,0.08);border:1px solid rgba(255,184,0,0.2);border-radius:12px;padding:16px;margin-top:8px;">
+    <p style="color:#FFB800;font-size:13px;">💡 Make sure you are signed in with the same email address in the app.</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">👑 Unlock Full Access</div>
+    <h1>Go <span>Premium</span><br/>Browse Freely</h1>
+    <p>Unlimited speed, zero ads, all servers — everything you need for true online freedom.</p>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- LEFT: Features -->
+    <div class="features-col">
+      <h2>Everything in Premium</h2>
+
+      <div class="feature-item">
+        <div class="feature-icon">♾️</div>
+        <div class="feature-text">
+          <h3>Unlimited Sessions</h3>
+          <p>Connect as long as you want with no daily limits or time restrictions.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">🚫</div>
+        <div class="feature-text">
+          <h3>Zero Advertisements</h3>
+          <p>Enjoy a completely clean experience with no ads ever interrupting you.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">🌍</div>
+        <div class="feature-text">
+          <h3>All Server Locations</h3>
+          <p>Access every server location worldwide for the best speeds near you.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-text">
+          <h3>Maximum Speed</h3>
+          <p>Premium users get priority bandwidth for the fastest possible connection.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-text">
+          <h3>Military-Grade Encryption</h3>
+          <p>WireGuard protocol keeps your data completely private and secure.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">🎧</div>
+        <div class="feature-text">
+          <h3>Priority Support</h3>
+          <p>Get fast responses from our support team whenever you need help.</p>
+        </div>
+      </div>
+
+      <!-- Comparison -->
+      <div class="compare">
+        <div class="compare-header">
+          <span>Feature</span>
+          <span style="text-align:center">Free</span>
+          <span style="text-align:center">Premium</span>
+        </div>
+        <div class="compare-row">
+          <span class="label">Daily connections</span>
+          <span class="free">3/day</span>
+          <span class="premium">Unlimited</span>
+        </div>
+        <div class="compare-row">
+          <span class="label">Session length</span>
+          <span class="free">2 hours</span>
+          <span class="premium">Unlimited</span>
+        </div>
+        <div class="compare-row">
+          <span class="label">Advertisements</span>
+          <span class="free">✗</span>
+          <span class="premium">No ads</span>
+        </div>
+        <div class="compare-row">
+          <span class="label">Server locations</span>
+          <span class="free">Limited</span>
+          <span class="premium">All</span>
+        </div>
+        <div class="compare-row">
+          <span class="label">Connection speed</span>
+          <span class="free">Standard</span>
+          <span class="premium">Maximum</span>
+        </div>
+        <div class="compare-row">
+          <span class="label">Support</span>
+          <span class="free">Basic</span>
+          <span class="premium">Priority</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Checkout -->
+    <div class="checkout-col">
+      <div class="checkout-card">
+        <h2>Choose Your Plan</h2>
+
+        <!-- Plan selector -->
+        <div class="plan-toggle">
+          <button class="plan-btn active" id="btnMonthly" onclick="selectPlan('monthly')">
+            <span class="plan-name">Monthly</span>
+            <span class="plan-price">$4.99</span>
+            <span class="plan-period">per month</span>
+          </button>
+          <button class="plan-btn" id="btnYearly" onclick="selectPlan('yearly')">
+            <span class="save-badge">BEST VALUE</span>
+            <span class="plan-name">Yearly</span>
+            <span class="plan-price">$59.99</span>
+            <span class="plan-period">per year</span>
+          </button>
+        </div>
+
+        <!-- Email -->
+        <label class="field-label">Your Email Address</label>
+        <input
+          class="field-input"
+          type="email"
+          id="emailInput"
+          placeholder="you@example.com"
+        />
+
+        <!-- Error / success msg -->
+        <div class="msg error" id="msgBox"></div>
+
+        <!-- Pay button -->
+        <button class="pay-btn" id="payBtn" onclick="handlePay()">
+          <span>👑</span>
+          <span id="payBtnText">Start Premium — $4.99/mo</span>
+        </button>
+
+        <!-- Trust badges -->
+        <div class="trust">
+          <div class="trust-item">🔒 Secure payment</div>
+          <div class="trust-item">↩️ Cancel anytime</div>
+          <div class="trust-item">🌍 200+ countries</div>
+        </div>
+
+        <!-- Already paid -->
+        <div class="already-paid">
+          <p>Already paid? Activate your account in the app below.</p>
+          <input
+            type="email"
+            id="verifyEmail"
+            placeholder="Enter your email to verify"
+          />
+          <div class="msg success" id="verifyMsg"></div>
+          <button class="verify-btn" onclick="handleVerify()">
+            ✓ I Already Paid — Activate Premium
+          </button>
+        </div>
+      </div>
+
+      <!-- small print -->
+      <p style="font-size:11px;color:#374151;text-align:center;margin-top:12px;line-height:1.6;">
+        By subscribing you agree to our Terms of Service.<br/>
+        Subscription renews automatically. Cancel anytime.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Paddle.js -->
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+<script>
+  // ── Config ──
+  const CLIENT_TOKEN   = 'live_c3702009d9bdd16a37c549b8ba1';
+  const PRICE_MONTHLY  = 'pri_01kmtyzatwye26dg1d04n7fqxw';
+  const PRICE_YEARLY   = 'pri_01kmtz55yn81s1we525gkmc7jc';
+  const FIREBASE_URL   = 'https://us-central1-vpn1-7343e.cloudfunctions.net/activatePremium';
+
+  // Initialize Paddle
+  Paddle.Initialize({
+    token: CLIENT_TOKEN,
+    eventCallback: function(data) {
+      if (data.name === 'checkout.completed') {
+        const email = data.data?.customer?.email || document.getElementById('emailInput').value;
+        activatePremium(email);
+      }
+    }
+  });
+
+  let selectedPlan = 'monthly';
+
+  function selectPlan(plan) {
+    selectedPlan = plan;
+    document.getElementById('btnMonthly').classList.toggle('active', plan === 'monthly');
+    document.getElementById('btnYearly').classList.toggle('active', plan === 'yearly');
+    document.getElementById('payBtnText').textContent =
+      plan === 'monthly' ? 'Start Premium — $4.99/mo' : 'Start Premium — $59.99/yr';
+  }
+
+  function showMsg(id, type, text) {
+    const el = document.getElementById(id);
+    el.className = 'msg ' + type;
+    el.textContent = text;
+    el.style.display = 'block';
+  }
+
+  function hideMsg(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+
+  function handlePay() {
+    const email = document.getElementById('emailInput').value.trim();
+    hideMsg('msgBox');
+
+    if (!email || !email.includes('@')) {
+      showMsg('msgBox', 'error', 'Please enter a valid email address.');
+      return;
+    }
+
+    const priceId = selectedPlan === 'monthly' ? PRICE_MONTHLY : PRICE_YEARLY;
+
+    Paddle.Checkout.open({
+      items: [{ priceId: priceId, quantity: 1 }],
+      customer: { email: email },
+      settings: {
+        theme: 'dark',
+        locale: 'en',
+        displayMode: 'overlay',
+        variant: 'one-page',
+      }
+    });
+  }
+
+  async function activatePremium(email) {
+    try {
+      await fetch(FIREBASE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, plan: selectedPlan })
+      });
+      document.getElementById('mainContent').style.display = 'none';
+      document.getElementById('successPage').style.display = 'block';
+      window.scrollTo(0, 0);
+    } catch(e) {
+      // Even if webhook fails, Paddle still processes payment
+      document.getElementById('mainContent').style.display = 'none';
+      document.getElementById('successPage').style.display = 'block';
+    }
+  }
+
+  async function handleVerify() {
+    const email = document.getElementById('verifyEmail').value.trim();
+    if (!email || !email.includes('@')) {
+      showMsg('verifyMsg', 'error', 'Please enter your email address.');
+      return;
+    }
+    const btn = document.querySelector('.verify-btn');
+    btn.disabled = true;
+    btn.textContent = 'Checking...';
+    try {
+      const res = await fetch(FIREBASE_URL + '?email=' + encodeURIComponent(email));
+      const data = await res.json();
+      if (data.isPremium) {
+        showMsg('verifyMsg', 'success', '✅ Premium activated! Open the app and sign in.');
+      } else {
+        showMsg('verifyMsg', 'error', 'No premium found for this email. Please check and try again.');
+      }
+    } catch(e) {
+      showMsg('verifyMsg', 'error', 'Could not verify. Please try again.');
+    }
+    btn.disabled = false;
+    btn.textContent = '✓ I Already Paid — Activate Premium';
+  }
+</script>
+
+</body>
+</html>
