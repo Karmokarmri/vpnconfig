@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SecureVPN Premium</title>
   <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -202,6 +203,17 @@
     .divider::before { left: 0; }
     .divider::after { right: 0; }
 
+    .qr-box {
+      display: flex; flex-direction: column; align-items: center;
+      background: #fff; border-radius: 16px;
+      padding: 16px; margin-bottom: 16px;
+    }
+    .qr-box canvas, .qr-box img { border-radius: 8px; }
+    .qr-label {
+      font-size: 12px; color: #333;
+      margin-top: 8px; font-weight: 600;
+      text-align: center;
+    }
     .secure-badge {
       display: flex; align-items: center; justify-content: center;
       gap: 6px; font-size: 12px; color: rgba(255,255,255,0.3);
@@ -359,6 +371,12 @@
       <div class="amount-currency">USDT</div>
     </div>
 
+    <!-- QR Code -->
+    <div class="qr-box">
+      <div id="qr-code"></div>
+      <div class="qr-label" id="qr-label">Scan to get address</div>
+    </div>
+
     <!-- Address -->
     <div class="address-box">
       <div class="address-label">Send USDT to this address</div>
@@ -452,6 +470,7 @@
     document.getElementById('usdt-address').textContent = ADDRESSES[network];
     document.getElementById('copy-btn').textContent = '📋 Copy Address';
     document.getElementById('copy-btn').classList.remove('copied');
+    generateQR(ADDRESSES[network], network.toUpperCase());
   }
 
   function copyAddress() {
@@ -484,6 +503,26 @@
   function closeModal(id) {
     document.getElementById(id).classList.remove('active');
   }
+
+  let qrInstance = null;
+  function generateQR(address, network) {
+    const container = document.getElementById('qr-code');
+    container.innerHTML = '';
+    qrInstance = new QRCode(container, {
+      text: address,
+      width: 180,
+      height: 180,
+      colorDark: '#000000',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+    document.getElementById('qr-label').textContent = network + ' Address';
+  }
+
+  // Generate QR on page load
+  window.addEventListener('load', () => {
+    generateQR(ADDRESSES['bep20'], 'BEP20');
+  });
 
   async function verifyPurchase() {
     const email = document.getElementById('restore-email').value.trim();
