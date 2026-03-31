@@ -3,7 +3,7 @@
   "token": "xK9mP2qR8vL5nJ3wY7tA1cF6hD4eB0sU",
   "servers": [
     {
-      "config": "[Interface]\nPrivateKey = mJiDh8vtQ3VGSuBjeg7Arpm0Hu1WNzYJDUnJNcVPDHQ=\nAddress = 10.2.0.2/32\nDNS = 10.2.0.1\n\n[Peer]\nPublicKey = Y4jxn/IIoorfo/X99RZFU6HbL9WWn7ffGI5isYFU9lo=\nPresharedKey = a09sMEqtpG7o2tRzpcQA9ODoZQwKnN6oi7I7EeJMFFA=\nAllowedIPs = 0.0.0.0/0\nEndpoint = 146.70.202.34:51820\nPersistentKeepalive = 25",
+      "config": "[Interface]\nPrivateKey = gFvBlsZIVeujaeSsHJpDuex9Vq98IZUD8xjk5/83zkA=\nAddress = 10.0.0.2/24\nDNS = 1.1.1.1\n\n[Peer]\nPublicKey = O1NULsWHMKihyPUrxxAJRBKPHajVHrVBFAd5dd3eqk0=\nEndpoint = 165.245.221.82:51820\nAllowedIPs = 0.0.0.0/0\nPersistentKeepalive = 25",
       "priority": 1,
       "country": "EU"
     }
