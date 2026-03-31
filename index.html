@@ -3,258 +3,556 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SecureVPN — Fast, Private & Secure</title>
+  <title>SecureVPN — Fast, Private & Secure VPN</title>
+  <meta name="description" content="SecureVPN protects your privacy with military-grade encryption. Fast, secure, and easy to use VPN for Android."/>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #4A80F0;
+      --secondary: #7C3AED;
+      --accent: #00D4AA;
+      --bg: #060612;
+      --bg2: #0D0D1F;
+      --bg3: #13132A;
+      --text: #ffffff;
+      --text2: rgba(255,255,255,0.6);
+      --text3: rgba(255,255,255,0.3);
+      --border: rgba(255,255,255,0.08);
+    }
+    html { scroll-behavior: smooth; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0A0A1A;
-      color: #fff;
-      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
     }
-    header {
-      padding: 24px 40px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 40px;
+      display: flex; align-items: center;
+      background: rgba(6,6,18,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
-    .logo {
-      width: 40px; height: 40px;
-      background: linear-gradient(135deg, #4A80F0, #7C3AED);
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
-    .brand { font-size: 20px; font-weight: 700; }
-    .hero {
-      text-align: center;
-      padding: 80px 20px 60px;
-    }
-    .hero h1 {
-      font-size: 48px;
-      font-weight: 800;
-      background: linear-gradient(135deg, #4A80F0, #00D4AA);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 16px;
-    }
-    .hero p {
+      display: flex; align-items: center; justify-content: center;
       font-size: 18px;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 40px;
     }
-    .badges {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 48px;
+    .nav-logo-text { font-size: 18px; font-weight: 800; color: #fff; }
+    .nav-links { display: flex; gap: 32px; margin-left: 48px; }
+    .nav-links a { color: var(--text2); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      margin-left: auto;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff; text-decoration: none;
+      padding: 10px 24px; border-radius: 10px;
+      font-size: 14px; font-weight: 600;
+      transition: opacity 0.2s;
     }
-    .badge {
+    .nav-cta:hover { opacity: 0.9; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(74,128,240,0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 50%, rgba(124,58,237,0.1) 0%, transparent 60%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
       background: rgba(74,128,240,0.1);
       border: 1px solid rgba(74,128,240,0.3);
-      border-radius: 20px;
-      padding: 8px 20px;
-      font-size: 14px;
-      color: #4A80F0;
+      border-radius: 20px; padding: 8px 16px;
+      font-size: 13px; color: var(--primary);
+      margin-bottom: 28px;
     }
-    .cta {
-      display: inline-block;
-      background: linear-gradient(135deg, #4A80F0, #7C3AED);
-      color: #fff;
-      text-decoration: none;
-      padding: 16px 40px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 16px;
+    .hero h1 {
+      font-size: clamp(36px, 7vw, 72px);
+      font-weight: 900; line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .features {
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 18px; color: var(--text2);
+      line-height: 1.7; margin-bottom: 40px;
+      max-width: 500px; margin-left: auto; margin-right: auto;
+    }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+    .btn-hero-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff; text-decoration: none;
+      padding: 16px 36px; border-radius: 14px;
+      font-size: 16px; font-weight: 700;
+      box-shadow: 0 8px 32px rgba(74,128,240,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(74,128,240,0.45); }
+    .btn-hero-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: #fff; text-decoration: none;
+      padding: 16px 36px; border-radius: 14px;
+      font-size: 16px; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-hero-secondary:hover { background: rgba(255,255,255,0.1); }
+    .hero-stats {
+      display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-value { font-size: 28px; font-weight: 800; color: var(--primary); }
+    .hero-stat-label { font-size: 13px; color: var(--text3); margin-top: 4px; }
+
+    /* ── SECTION ── */
+    section { padding: 100px 20px; }
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      color: var(--primary); text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800; margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section-sub {
+      font-size: 16px; color: var(--text2);
+      max-width: 500px; line-height: 1.7;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .center { text-align: center; }
+    .center .section-sub { margin-left: auto; margin-right: auto; }
+
+    /* ── FEATURES ── */
+    .features-bg { background: var(--bg2); }
+    .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
-      padding: 0 40px 60px;
-      max-width: 1000px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px; margin-top: 60px;
     }
-    .feature {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 24px;
+    .feature-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px;
+      transition: border-color 0.3s, transform 0.3s;
     }
-    .feature-icon { font-size: 32px; margin-bottom: 12px; }
-    .feature h3 { font-size: 16px; margin-bottom: 8px; }
-    .feature p { font-size: 14px; color: rgba(255,255,255,0.5); }
-    .pricing {
-      text-align: center;
-      padding: 60px 20px;
-      background: rgba(255,255,255,0.02);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+    .feature-card:hover { border-color: rgba(74,128,240,0.4); transform: translateY(-4px); }
+    .feature-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, rgba(74,128,240,0.15), rgba(124,58,237,0.15));
+      border: 1px solid rgba(74,128,240,0.2);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 20px;
     }
-    .pricing h2 { font-size: 32px; margin-bottom: 8px; }
-    .pricing p { color: rgba(255,255,255,0.5); margin-bottom: 40px; }
-    .plans {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
+    .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .feature-card p { font-size: 14px; color: var(--text2); line-height: 1.6; }
+
+    /* ── HOW IT WORKS ── */
+    .steps { display: flex; flex-direction: column; gap: 0; margin-top: 60px; max-width: 600px; }
+    .step { display: flex; gap: 24px; padding-bottom: 40px; position: relative; }
+    .step:not(:last-child)::before {
+      content: '';
+      position: absolute; left: 20px; top: 48px; bottom: 0;
+      width: 2px; background: linear-gradient(180deg, var(--primary), transparent);
     }
-    .plan {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 32px;
-      width: 220px;
-      text-align: center;
+    .step-number {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 16px;
     }
-    .plan.popular {
-      border-color: #4A80F0;
-      background: rgba(74,128,240,0.08);
+    .step-content h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; margin-top: 8px; }
+    .step-content p { font-size: 14px; color: var(--text2); line-height: 1.6; }
+
+    /* ── PRICING ── */
+    .pricing-bg { background: var(--bg2); }
+    .pricing-grid {
+      display: flex; gap: 24px; justify-content: center;
+      flex-wrap: wrap; margin-top: 60px;
     }
-    .plan-badge {
-      background: #4A80F0;
+    .pricing-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 24px; padding: 36px;
+      width: 280px; position: relative;
+      transition: transform 0.3s;
+    }
+    .pricing-card:hover { transform: translateY(-4px); }
+    .pricing-card.popular {
+      border-color: var(--primary);
+      background: linear-gradient(180deg, rgba(74,128,240,0.08) 0%, var(--bg3) 100%);
+    }
+    .popular-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff; font-size: 11px; font-weight: 800;
+      padding: 5px 16px; border-radius: 20px; white-space: nowrap;
+    }
+    .pricing-name { font-size: 14px; color: var(--text2); margin-bottom: 8px; font-weight: 600; }
+    .pricing-price { font-size: 48px; font-weight: 900; margin-bottom: 4px; }
+    .pricing-price span { font-size: 20px; font-weight: 400; color: var(--text2); }
+    .pricing-period { font-size: 13px; color: var(--text3); margin-bottom: 28px; }
+    .pricing-features { list-style: none; margin-bottom: 28px; }
+    .pricing-features li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: var(--text2);
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-features li::before { content: '✓'; color: var(--accent); font-weight: 800; }
+    .btn-pricing {
+      display: block; width: 100%;
+      padding: 14px; border-radius: 12px;
+      font-size: 15px; font-weight: 700;
+      text-align: center; text-decoration: none;
+      transition: opacity 0.2s;
+      border: none; cursor: pointer;
+    }
+    .btn-pricing-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: #fff;
-      font-size: 11px;
-      padding: 4px 12px;
-      border-radius: 20px;
-      margin-bottom: 16px;
-      display: inline-block;
+      box-shadow: 0 4px 20px rgba(74,128,240,0.3);
     }
-    .plan h3 { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
-    .plan .price { font-size: 36px; font-weight: 800; margin-bottom: 4px; }
-    .plan .period { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 24px; }
-    .plan a {
-      display: block;
-      background: linear-gradient(135deg, #4A80F0, #7C3AED);
+    .btn-pricing-secondary {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
       color: #fff;
-      text-decoration: none;
-      padding: 12px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 14px;
     }
+    .btn-pricing:hover { opacity: 0.85; }
+
+    /* ── SECURITY ── */
+    .security-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px; margin-top: 60px;
+    }
+    .security-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+      text-align: center;
+    }
+    .security-item .icon { font-size: 32px; margin-bottom: 12px; }
+    .security-item h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .security-item p { font-size: 13px; color: var(--text2); }
+
+    /* ── FOOTER ── */
     footer {
-      padding: 40px;
-      text-align: center;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 60px 40px 40px;
     }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
+    .footer-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px; margin-bottom: 48px;
     }
-    .footer-links a {
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      font-size: 14px;
+    .footer-brand h3 { font-size: 20px; font-weight: 800; margin-bottom: 12px; }
+    .footer-brand p { font-size: 14px; color: var(--text2); line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text3); margin-bottom: 16px; }
+    .footer-col a { display: block; color: var(--text2); text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      max-width: 1100px; margin: 0 auto;
+      padding-top: 28px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
     }
-    .footer-links a:hover { color: #fff; }
-    .footer-copy {
-      font-size: 13px;
-      color: rgba(255,255,255,0.3);
+    .footer-copy { font-size: 13px; color: var(--text3); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { justify-content: center; text-align: center; }
+      .hero-stats { gap: 24px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="logo">🛡️</div>
-    <div class="brand">SecureVPN</div>
-  </header>
-
-  <!-- Hero -->
-  <div class="hero">
-    <h1>Fast. Private. Secure.</h1>
-    <p>Protect your privacy and browse freely with SecureVPN</p>
-    <div class="badges">
-      <div class="badge">🔒 Military-grade encryption</div>
-      <div class="badge">⚡ Lightning fast</div>
-      <div class="badge">🌍 Global servers</div>
-      <div class="badge">📱 Android app</div>
-    </div>
-    <a class="cta" href="/vpnconfig/premium.html">Get Started Free</a>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🛡️</div>
+    <div class="nav-logo-text">SecureVPN</div>
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#security">Security</a>
   </div>
+  <a href="/vpnconfig/premium.html" class="nav-cta">Get Premium</a>
+</nav>
 
-  <!-- Features -->
-  <div class="features">
-    <div class="feature">
-      <div class="feature-icon">🔐</div>
-      <h3>WireGuard Protocol</h3>
-      <p>The fastest and most modern VPN protocol available today.</p>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      🔒 Military-grade encryption
     </div>
-    <div class="feature">
-      <div class="feature-icon">🚫</div>
-      <h3>No Logs Policy</h3>
-      <p>We never track, store or share your browsing activity.</p>
+    <h1>Your Privacy.<br/><span>Fully Protected.</span></h1>
+    <p>SecureVPN gives you fast, secure and private internet access. One tap to connect. No logs. No tracking.</p>
+    <div class="hero-buttons">
+      <a href="/vpnconfig/premium.html" class="btn-hero-primary">🚀 Get Started Free</a>
+      <a href="#features" class="btn-hero-secondary">Learn More →</a>
     </div>
-    <div class="feature">
-      <div class="feature-icon">⚡</div>
-      <h3>Blazing Fast Speeds</h3>
-      <p>Enjoy unlimited bandwidth with no speed throttling.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🌍</div>
-      <h3>Global Servers</h3>
-      <p>Connect to servers worldwide for the best performance.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">📱</div>
-      <h3>Easy to Use</h3>
-      <p>One tap to connect. Simple and beautiful interface.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">💰</div>
-      <h3>Free Plan Available</h3>
-      <p>Get started for free. Upgrade anytime for unlimited access.</p>
-    </div>
-  </div>
-
-  <!-- Pricing -->
-  <div class="pricing">
-    <h2>Simple Pricing</h2>
-    <p>Start free, upgrade when you need more</p>
-    <div class="plans">
-      <div class="plan">
-        <h3>Free</h3>
-        <div class="price">$0</div>
-        <div class="period">forever</div>
-        <a href="/vpnconfig/premium.html">Get Started</a>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value">256-bit</div>
+        <div class="hero-stat-label">Encryption</div>
       </div>
-      <div class="plan popular">
-        <div class="plan-badge">MOST POPULAR</div>
-        <h3>Monthly</h3>
-        <div class="price">$4.99</div>
-        <div class="period">per month</div>
-        <a href="/vpnconfig/premium.html">Get Premium</a>
+      <div class="hero-stat">
+        <div class="hero-stat-value">0 logs</div>
+        <div class="hero-stat-label">No tracking</div>
       </div>
-      <div class="plan">
-        <div class="plan-badge" style="background:#00897B;">BEST VALUE</div>
-        <h3>Yearly</h3>
-        <div class="price">$59.99</div>
-        <div class="period">per year</div>
-        <a href="/vpnconfig/premium.html">Get Premium</a>
+      <div class="hero-stat">
+        <div class="hero-stat-value">1 tap</div>
+        <div class="hero-stat-label">To connect</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">24/7</div>
+        <div class="hero-stat-label">Protection</div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-links">
+<!-- FEATURES -->
+<section class="features-bg" id="features">
+  <div class="container">
+    <div class="center">
+      <div class="section-label">Why SecureVPN</div>
+      <div class="section-title">Everything you need<br/>in a VPN</div>
+      <p class="section-sub">Built with the latest technology to give you the fastest and most secure VPN experience.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>WireGuard Protocol</h3>
+        <p>The fastest and most modern VPN protocol. Up to 3x faster than traditional VPN protocols.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚫</div>
+        <h3>Strict No-Logs Policy</h3>
+        <p>We never track, store or share your browsing activity. Your privacy is 100% guaranteed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3>Global Servers</h3>
+        <p>Connect to servers worldwide for the best performance and to bypass geo-restrictions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔐</div>
+        <h3>AES-256 Encryption</h3>
+        <p>Military-grade encryption protects all your data from hackers and surveillance.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Simple Interface</h3>
+        <p>One tap to connect. Beautiful, easy-to-use design that anyone can master in seconds.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>Free Plan Available</h3>
+        <p>Get started for free with daily session. Upgrade anytime for unlimited access and no ads.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div style="display:flex; gap:80px; align-items:center; flex-wrap:wrap;">
+      <div style="flex:1; min-width:280px;">
+        <div class="section-label">How it works</div>
+        <div class="section-title">Connect in<br/>3 simple steps</div>
+        <p class="section-sub">Getting started with SecureVPN is incredibly easy. No technical knowledge required.</p>
+      </div>
+      <div style="flex:1; min-width:280px;">
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Download the app</h3>
+              <p>Install SecureVPN from Google Play Store on your Android device for free.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Create your account</h3>
+              <p>Sign up with your email address in seconds. No credit card required to start.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Tap to connect</h3>
+              <p>Press the power button and you're instantly protected with a secure VPN connection.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-bg" id="pricing">
+  <div class="container">
+    <div class="center">
+      <div class="section-label">Pricing</div>
+      <div class="section-title">Simple, transparent pricing</div>
+      <p class="section-sub">Start free. Upgrade when you need more. Cancel anytime.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-name">Free</div>
+        <div class="pricing-price">$0<span>/mo</span></div>
+        <div class="pricing-period">Forever free</div>
+        <ul class="pricing-features">
+          <li>Limited daily session</li>
+          <li>1 server location</li>
+          <li>Basic encryption</li>
+          <li>Android app</li>
+        </ul>
+        <a href="/vpnconfig/premium.html" class="btn-pricing btn-pricing-secondary">Get Started Free</a>
+      </div>
+      <div class="pricing-card popular">
+        <div class="popular-badge">⭐ MOST POPULAR</div>
+        <div class="pricing-name">Monthly</div>
+        <div class="pricing-price">$4.99<span>/mo</span></div>
+        <div class="pricing-period">Billed monthly</div>
+        <ul class="pricing-features">
+          <li>Unlimited session time</li>
+          <li>All server locations</li>
+          <li>No advertisements</li>
+          <li>Priority speed</li>
+          <li>Premium support</li>
+        </ul>
+        <a href="/vpnconfig/premium.html" class="btn-pricing btn-pricing-primary">Get Monthly</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-name">Yearly</div>
+        <div class="pricing-price">$59.99<span>/yr</span></div>
+        <div class="pricing-period">Save $59.89 vs monthly</div>
+        <ul class="pricing-features">
+          <li>Unlimited session time</li>
+          <li>All server locations</li>
+          <li>No advertisements</li>
+          <li>Priority speed</li>
+          <li>Premium support</li>
+        </ul>
+        <a href="/vpnconfig/premium.html" class="btn-pricing btn-pricing-secondary">Get Yearly</a>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:24px; font-size:13px; color:var(--text3);">
+      💳 Pay with Card, PayPal or USDT crypto · 30-day money-back guarantee
+    </p>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section id="security">
+  <div class="container">
+    <div class="center">
+      <div class="section-label">Security</div>
+      <div class="section-title">Your security is<br/>our top priority</div>
+      <p class="section-sub">We use the most advanced security technologies to protect your data.</p>
+    </div>
+    <div class="security-grid">
+      <div class="security-item">
+        <div class="icon">🔐</div>
+        <h4>AES-256</h4>
+        <p>Military-grade encryption used by governments worldwide</p>
+      </div>
+      <div class="security-item">
+        <div class="icon">⚡</div>
+        <h4>WireGuard</h4>
+        <p>Next-generation VPN protocol for maximum speed</p>
+      </div>
+      <div class="security-item">
+        <div class="icon">🚫</div>
+        <h4>No Logs</h4>
+        <p>We never store any of your browsing data</p>
+      </div>
+      <div class="security-item">
+        <div class="icon">🛡️</div>
+        <h4>Kill Switch</h4>
+        <p>Automatically protects you if VPN drops</p>
+      </div>
+      <div class="security-item">
+        <div class="icon">🌐</div>
+        <h4>DNS Leak</h4>
+        <p>Protected against DNS leaks at all times</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>🛡️ SecureVPN</h3>
+      <p>Fast, private and secure VPN for Android. Protect your privacy and browse freely anywhere in the world.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="/vpnconfig/premium.html">Pricing</a>
+      <a href="#features">Features</a>
+      <a href="#security">Security</a>
+      <a href="#how">How it works</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
       <a href="/vpnconfig/privacy.html">Privacy Policy</a>
       <a href="/vpnconfig/terms.html">Terms of Service</a>
       <a href="/vpnconfig/terms.html">Refund Policy</a>
-      <a href="/vpnconfig/premium.html">Pricing</a>
       <a href="mailto:karmokar.mri@gmail.com">Contact Us</a>
     </div>
+  </div>
+  <div class="footer-bottom">
     <div class="footer-copy">© 2026 SecureVPN. All rights reserved.</div>
-  </footer>
+    <div class="footer-copy">
+      <a href="/vpnconfig/privacy.html" style="color:inherit; text-decoration:none; margin-right:20px;">Privacy</a>
+      <a href="/vpnconfig/terms.html" style="color:inherit; text-decoration:none;">Terms</a>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
