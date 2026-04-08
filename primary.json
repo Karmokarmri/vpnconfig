@@ -1,11 +1,8 @@
 {
-  "version": "1",
-  "token": "xK9mP2qR8vL5nJ3wY7tA1cF6hD4eB0sU",
   "servers": [
     {
-      "config": "[Interface]\nPrivateKey = kIL8Gs7exqAuPlX8TcpJL6Rix3NXqQqskQlOwmacs0s=\nAddress = 10.33.148.19/24\nDNS = 1.1.1.1, 8.8.8.8\n\n[Peer]\nPublicKey = NQBaEIun1cEMOzmj799hDnCpRC0GKcvxb/DxKmaaQk0=\nEndpoint = 193.202.10.89:443\nAllowedIPs = 0.0.0.0/0\nPersistentKeepalive = 25",
-      "priority": 1,
-      "country": "EU"
+      "name": "Frankfurt #1",
+      "config": "[Interface]\nPrivateKey = MGkU6RMoPLi1pvcq538802NKVTyIx1lTDg0QGSYJumo=\nAddress = 10.75.103.2/24\nDNS = 1.1.1.1, 8.8.8.8\n\n[Peer]\nPublicKey = Em6DKv+jDYkefD4gszBd7fDOJlaTzvkJwBaC3wzr+n4=\nPresharedKey = 9+VoUzxxmZggnYMh8hx6EHOy0VnuM44AtlkO5gIHftw=\nEndpoint = 167.172.160.29:51820\nAllowedIPs = 0.0.0.0/0, ::/0\nPersistentKeepalive = 25"
     }
   ]
 }
