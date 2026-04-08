@@ -25,5 +25,5 @@
   "version": "1.0",
   "expires_at": "2027-01-01T00:00:00Z",
   "signature": "vivian-sig-v1",
-  "protocols": ["v2ray", "shadowsocks", "wireguard"]
+  "protocols": ["v2ray", "shadowsocks", "trojan", "ikev2"]
 }
