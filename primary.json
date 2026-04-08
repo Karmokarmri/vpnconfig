@@ -1,8 +1,29 @@
 {
+  "token": "xK9mP2qR8vL5nJ3wY7tA1cF6hD4eB0sU",
   "servers": [
     {
-      "name": "Frankfurt #1",
-      "config": "[Interface]\nPrivateKey = MGkU6RMoPLi1pvcq538802NKVTyIx1lTDg0QGSYJumo=\nAddress = 10.75.103.2/24\nDNS = 1.1.1.1, 8.8.8.8\n\n[Peer]\nPublicKey = Em6DKv+jDYkefD4gszBd7fDOJlaTzvkJwBaC3wzr+n4=\nPresharedKey = 9+VoUzxxmZggnYMh8hx6EHOy0VnuM44AtlkO5gIHftw=\nEndpoint = 167.172.160.29:51820\nAllowedIPs = 0.0.0.0/0, ::/0\nPersistentKeepalive = 25"
+      "id": "frankfurt-1",
+      "country": "Germany",
+      "city": "Frankfurt",
+      "country_code": "DE",
+      "ip": "167.172.160.29",
+      "port": 443,
+      "protocol": "v2ray",
+      "load": 10,
+      "obfs": true,
+      "tls": false,
+      "encrypted": true,
+      "signed": true,
+      "wgConfig": "[Interface]\nPrivateKey = MGkU6RMoPLi1pvcq538802NKVTyIx1lTDg0QGSYJumo=\nAddress = 10.75.103.2/24\nDNS = 1.1.1.1, 8.8.8.8\n\n[Peer]\nPublicKey = Em6DKv+jDYkefD4gszBd7fDOJlaTzvkJwBaC3wzr+n4=\nPresharedKey = 9+VoUzxxmZggnYMh8hx6EHOy0VnuM44AtlkO5gIHftw=\nEndpoint = 167.172.160.29:51820\nAllowedIPs = 0.0.0.0/0, ::/0\nPersistentKeepalive = 25",
+      "v2rayUuid": "0fb2deb3-2247-4154-a1bf-35f824c1024e",
+      "v2rayPath": "/vpn",
+      "v2rayType": "vless",
+      "sni": "167.172.160.29",
+      "ssPassword": "SecureVPN2024!"
     }
-  ]
+  ],
+  "version": "1.0",
+  "expires_at": "2027-01-01T00:00:00Z",
+  "signature": "vivian-sig-v1",
+  "protocols": ["v2ray", "shadowsocks", "wireguard"]
 }
