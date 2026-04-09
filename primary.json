@@ -1,38 +1,76 @@
 {
+  "token": "xK9mP2qR8vL5nJ3wY7tA1cF6hD4eB0sU",
+  "version": "2.0",
+  "expires_at": "2028-01-01T00:00:00Z",
+  "signature": "vivian-sig-v1",
+  "encrypted": true,
+  "signed": true,
+  "protocols": ["wireguard", "shadowsocks", "v2ray", "trojan"],
   "servers": [
     {
       "id": "frankfurt-wg",
-      "protocol": "wireguard",
+      "country": "Germany",
+      "city": "Frankfurt",
+      "country_code": "DE",
       "ip": "167.172.160.29",
       "port": 51820,
-      "obfs": false
-      ... wgConfig
+      "protocol": "wireguard",
+      "load": 10,
+      "obfs": false,
+      "tls": false,
+      "encrypted": true,
+      "signed": true,
+      "wgConfig": "[Interface]\nPrivateKey = MGkU6RMoPLi1pvcq538802NKVTyIx1lTDg0QGSYJumo=\nAddress = 10.75.103.2/24\nDNS = 1.1.1.1, 8.8.8.8\n\n[Peer]\nPublicKey = Em6DKv+jDYkefD4gszBd7fDOJlaTzvkJwBaC3wzr+n4=\nPresharedKey = 9+VoUzxxmZggnYMh8hx6EHOy0VnuM44AtlkO5gIHftw=\nEndpoint = 167.172.160.29:51820\nAllowedIPs = 0.0.0.0/0, ::/0\nPersistentKeepalive = 25"
     },
     {
       "id": "frankfurt-ss",
-      "protocol": "shadowsocks",
-      "ip": "167.172.160.29", 
+      "country": "Germany",
+      "city": "Frankfurt",
+      "country_code": "DE",
+      "ip": "167.172.160.29",
       "port": 8388,
+      "protocol": "shadowsocks",
+      "load": 10,
+      "obfs": true,
+      "tls": false,
+      "encrypted": true,
+      "signed": true,
       "ssPassword": "VivianSS2024!",
-      "ssMethod": "aes-256-gcm",
-      "obfs": true   ← brain will use this for Russia
+      "ssMethod": "aes-256-gcm"
     },
     {
       "id": "frankfurt-v2ray",
-      "protocol": "v2ray",
+      "country": "Germany",
+      "city": "Frankfurt",
+      "country_code": "DE",
       "ip": "167.172.160.29",
       "port": 10086,
-      "v2rayUuid": "0fb2deb3-...",
+      "protocol": "v2ray",
+      "load": 10,
+      "obfs": true,
+      "tls": false,
+      "encrypted": true,
+      "signed": true,
+      "v2rayUuid": "0fb2deb3-2247-4154-a1bf-35f824c1024e",
       "v2rayPath": "/vpn",
-      "obfs": true
+      "v2rayType": "vless",
+      "sni": "167.172.160.29"
     },
     {
       "id": "frankfurt-trojan",
-      "protocol": "trojan",
+      "country": "Germany",
+      "city": "Frankfurt",
+      "country_code": "DE",
       "ip": "167.172.160.29",
       "port": 10087,
+      "protocol": "trojan",
+      "load": 10,
+      "obfs": true,
+      "tls": true,
+      "encrypted": true,
+      "signed": true,
       "trojanPassword": "VivianTrojan2024!",
-      "obfs": true
+      "sni": "167.172.160.29"
     }
   ]
 }
