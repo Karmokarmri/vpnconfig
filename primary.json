@@ -6,7 +6,7 @@
       "protocol": "vless",
       "host": "sub.horusveil.xyz",
       "port": 443,
-      "uuid": "0fb2deb3-XXXX-XXXX-XXXX-XXXXXXXX",
+      "uuid": "0fb2deb3-1a2b-4c3d-8e9f-123456789abc",
       "path": "/vpn",
       "security": "tls",
       "network": "ws"
