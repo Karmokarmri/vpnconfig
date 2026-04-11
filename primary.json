@@ -1,12 +1,38 @@
 {
-  "version": "2.2",
-  "last_updated": "2026-04-11T16:00:00Z",
-  "token": "xK9mP2qR8vL5nJ3wY7tA1cF6hD4eB0sU",
-  "signature": "vivian-sig-v1",
-  "primary_subscription": "https://164.90.236.201/I5BUugbF1bPClFoyyhafvb4X/f92b0058-9bb5-41c5-9ac7-94449195a671/#default",
-  "fallback_subscription": "https://sub.horusveil.xyz/[your-secret-sub-link-if-you-set-it]",
-  "message": "Use Hiddify subscription for all strong protocols (Hysteria2, Reality, TUIC, etc.)",
-  "auto_failover": true,
-  "use_hiddify_subscription": true,
-  "servers": []
+  "servers": [
+    {
+      "id": "frankfurt-wg",
+      "protocol": "wireguard",
+      "ip": "167.172.160.29",
+      "port": 51820,
+      "obfs": false
+      ... wgConfig
+    },
+    {
+      "id": "frankfurt-ss",
+      "protocol": "shadowsocks",
+      "ip": "167.172.160.29", 
+      "port": 8388,
+      "ssPassword": "VivianSS2024!",
+      "ssMethod": "aes-256-gcm",
+      "obfs": true   ← brain will use this for Russia
+    },
+    {
+      "id": "frankfurt-v2ray",
+      "protocol": "v2ray",
+      "ip": "167.172.160.29",
+      "port": 10086,
+      "v2rayUuid": "0fb2deb3-...",
+      "v2rayPath": "/vpn",
+      "obfs": true
+    },
+    {
+      "id": "frankfurt-trojan",
+      "protocol": "trojan",
+      "ip": "167.172.160.29",
+      "port": 10087,
+      "trojanPassword": "VivianTrojan2024!",
+      "obfs": true
+    }
+  ]
 }
