@@ -1,38 +1,22 @@
 {
   "servers": [
     {
-      "id": "frankfurt-wg",
-      "protocol": "wireguard",
-      "ip": "167.172.160.29",
-      "port": 51820,
-      "obfs": false
-      ... wgConfig
-    },
-    {
-      "id": "frankfurt-ss",
-      "protocol": "shadowsocks",
-      "ip": "167.172.160.29", 
-      "port": 8388,
-      "ssPassword": "VivianSS2024!",
-      "ssMethod": "aes-256-gcm",
-      "obfs": true   ← brain will use this for Russia
-    },
-    {
-      "id": "frankfurt-v2ray",
-      "protocol": "v2ray",
-      "ip": "167.172.160.29",
-      "port": 10086,
-      "v2rayUuid": "0fb2deb3-...",
-      "v2rayPath": "/vpn",
-      "obfs": true
+      "id": "frankfurt-vless",
+      "protocol": "vless",
+      "host": "sub.horusveil.xyz",
+      "port": 443,
+      "uuid": "0fb2deb3-XXXX-XXXX-XXXX-XXXXXXXX",
+      "path": "/vpn",
+      "security": "tls",
+      "network": "ws"
     },
     {
       "id": "frankfurt-trojan",
       "protocol": "trojan",
-      "ip": "167.172.160.29",
-      "port": 10087,
-      "trojanPassword": "VivianTrojan2024!",
-      "obfs": true
+      "host": "sub.horusveil.xyz",
+      "port": 443,
+      "password": "VivianTrojan2024!",
+      "sni": "sub.horusveil.xyz"
     }
   ]
 }
