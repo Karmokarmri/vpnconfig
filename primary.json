@@ -2,23 +2,13 @@
   "token": "xK9mP2qR8vL5nJ3wY7tA1cF6hD4eB0sU",
   "servers": [
     {
-      "id": "frankfurt-vless",
-      "protocol": "vless",
-      "host": "sub.horusveil.xyz",
-      "port": 443,
-      "uuid": "0fb2deb3-1a2b-4c3d-8e9f-123456789abc",
-      "path": "/vpn",
-      "security": "tls",
-      "network": "ws",
-      "sni": "sub.horusveil.xyz"
-    },
-    {
       "id": "frankfurt-trojan",
-      "protocol": "trojan",
-      "host": "sub.horusveil.xyz",
+      "country": "DE",
+      "city": "Frankfurt",
+      "ip": "sub.horusveil.xyz",
       "port": 443,
-      "password": "VivianTrojan2024!",
-      "sni": "sub.horusveil.xyz"
+      "protocol": "trojan",
+      "loadPercent": 15
     }
   ]
 }
