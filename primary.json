@@ -1,23 +1,17 @@
 {
-  "log": { "level": "info" },
-  "inbounds": [
+  "token": "xK9mP2qR8vL5nJ3wY7tA1cF6hD4eB0sU",
+  "version": "2.2",
+  "servers": [
     {
-      "type": "vless",
-      "tag": "reality",
-      "listen": "::",
-      "listen_port": 443,
-      "users": [
-        { "uuid": "0fb2deb3-2247-4154-a1bf-35f824c1024e" }
-      ],
-      "tls": {
-        "enabled": true,
-        "server_name": "www.microsoft.com",
-        "reality": {
-          "enabled": true,
-          "private_key": "KIovicfFzDQuIraXp1X2CCe94xyLm7uBQDC8JkhRtW0",
-          "short_id": ["0123456789abcdef"]
-        }
-      }
+      "id": "reality-russia",
+      "country": "Germany",
+      "ip": "sub.horusveil.xyz",
+      "port": 8443,
+      "protocol": "vless-reality",
+      "v2rayUuid": "0fb2deb3-2247-4154-a1bf-35f824c1024e",
+      "sni": "www.microsoft.com",
+      "publicKey": "xmkZNfT7OdemLCFbgwsmDDilxuqRfR0oKrbAgaoAqVI",
+      "shortId": "0123456789abcdef"
     }
-  ],
-  "outbounds": }
+  ]
+}
