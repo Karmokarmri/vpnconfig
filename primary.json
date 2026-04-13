@@ -1,42 +1,21 @@
 {
   "token": "xK9mP2qR8vL5nJ3wY7tA1cF6hD4eB0sU",
+  "version": "2.1",
+  "expires_at": "2028-01-01T00:00:00Z",
+  "protocols": ,
   "servers": [
     {
-      "id": "frankfurt-cdn",
-      "name": "Frankfurt CDN",
-      "protocol": "v2ray",
-      "ip": "sub.horusveil.xyz",
+      "id": "russia-main",
+      "country": "Germany",
+      "city": "Frankfurt",
+      "country_code": "DE",
+      "ip": "your-proxy-server-ip",
       "port": 443,
-      "v2rayUuid": "0fb2deb3-2247-4154-a1bf-35f824c1024e",
-      "v2rayPath": "/vpn",
-      "sni": "sub.horusveil.xyz",
-      "tls": true
-    },
-    {
-      "id": "frankfurt-ss",
-      "name": "Frankfurt SS",
-      "protocol": "shadowsocks",
-      "ip": "167.172.160.29",
-      "port": 8388,
-      "ssMethod": "aes-256-gcm",
-      "ssPassword": "VivianSS2024!"
-    },
-    {
-      "id": "frankfurt-trojan",
-      "name": "Frankfurt Trojan",
-      "protocol": "trojan",
-      "ip": "167.172.160.29",
-      "port": 10087,
-      "trojanPassword": "VivianTrojan2024!",
-      "sni": "167.172.160.29"
-    },
-    {
-      "id": "frankfurt-wg",
-      "name": "Frankfurt WireGuard",
-      "protocol": "wireguard",
-      "ip": "167.172.160.29",
-      "port": 51820,
-      "wgConfig": "[Interface]\nPrivateKey = MGkU6RMoPLi1pvcq538802NKVTyIx1lTDg0QGSYJumo=\nAddress = 10.0.0.2/32\nDNS = 1.1.1.1\n\n[Peer]\nPublicKey = REPLACE_WITH_SERVER_PUBLIC_KEY\nEndpoint = 167.172.160.29:51820\nAllowedIPs = 0.0.0.0/0"
+      "protocol": "vless-reality",
+      "v2rayUuid": "generate-a-new-uuid-here",
+      "sni": "www.microsoft.com",
+      "publicKey": "paste-reality-public-key-here",
+      "shortId": "01234567"
     }
   ]
 }
