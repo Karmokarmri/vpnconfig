@@ -1,21 +1,23 @@
 {
-  "token": "xK9mP2qR8vL5nJ3wY7tA1cF6hD4eB0sU",
-  "version": "2.1",
-  "expires_at": "2028-01-01T00:00:00Z",
-  "protocols": ,
-  "servers": [
+  "log": { "level": "info" },
+  "inbounds": [
     {
-      "id": "russia-main",
-      "country": "Germany",
-      "city": "Frankfurt",
-      "country_code": "DE",
-      "ip": "your-proxy-server-ip",
-      "port": 443,
-      "protocol": "vless-reality",
-      "v2rayUuid": "generate-a-new-uuid-here",
-      "sni": "www.microsoft.com",
-      "publicKey": "paste-reality-public-key-here",
-      "shortId": "01234567"
+      "type": "vless",
+      "tag": "reality",
+      "listen": "::",
+      "listen_port": 443,
+      "users": [
+        { "uuid": "0fb2deb3-2247-4154-a1bf-35f824c1024e" }
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": "www.microsoft.com",
+        "reality": {
+          "enabled": true,
+          "private_key": "KIovicfFzDQuIraXp1X2CCe94xyLm7uBQDC8JkhRtW0",
+          "short_id": ["0123456789abcdef"]
+        }
+      }
     }
-  ]
-}
+  ],
+  "outbounds": }
